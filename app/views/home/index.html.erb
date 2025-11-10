@@ -1,2 +1,12 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="text-center mt-5">
+  <h1 class="display-4 fw-bold">Welcome to StudyTrack</h1>
+  <p class="lead text-secondary">
+    Track your assignments, study sessions, and stay on top of deadlines.
+  </p>
+
+  <% unless user_signed_in? %>
+    <%= link_to "Get Started", new_user_registration_path, class: "btn btn-primary btn-lg mt-3" %>
+  <% else %>
+    <%= link_to "View Assignments", assignments_path, class: "btn btn-success btn-lg mt-3" %>
+  <% end %>
+</div>
