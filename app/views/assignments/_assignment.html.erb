@@ -1,27 +1,38 @@
-<div id="<%= dom_id assignment %>">
-  <p>
-    <strong>Title:</strong>
-    <%= assignment.title %>
-  </p>
+<div id="<%= dom_id assignment %>" class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title d-flex justify-content-between align-items-center">
+      <span><%= assignment.title %></span>
 
-  <p>
-    <strong>Due date:</strong>
-    <%= assignment.due_date %>
-  </p>
+      <% if defined?(@priority_strategy) && @priority_strategy.present? %>
+        <% label = @priority_strategy.priority_for(assignment) %>
+        <% badge_class =
+          case label
+          when "Overdue" then "bg-danger"
+          when "High"    then "bg-danger"
+          when "Medium"  then "bg-warning text-dark"
+          when "Low"     then "bg-success"
+          when "No due date" then "bg-secondary"
+          else "bg-secondary"
+          end %>
+        <span class="badge <%= badge_class %>">
+          <%= label %>
+        </span>
+      <% end %>
+    </h5>
 
-  <p>
-    <strong>Status:</strong>
-    <%= assignment.status %>
-  </p>
+    <p class="mb-1">
+      <strong>Due date:</strong>
+      <%= assignment.due_date %>
+    </p>
 
-  <p>
-    <strong>Course:</strong>
-    <%= assignment.course %>
-  </p>
+    <p class="mb-1">
+      <strong>Status:</strong>
+      <%= assignment.status %>
+    </p>
 
-  <p>
-    <strong>Notes:</strong>
-    <%= assignment.notes %>
-  </p>
-
+    <p class="mb-1">
+      <strong>Notes:</strong>
+      <%= assignment.notes %>
+    </p>
+  </div>
 </div>

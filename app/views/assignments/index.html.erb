@@ -2,15 +2,16 @@
 
 <% content_for :title, "Assignments" %>
 
-<h1>Assignments</h1>
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="mb-0">Assignments</h1>
+  <%= link_to "New assignment", new_assignment_path, class: "btn btn-primary" %>
+</div>
 
 <div id="assignments">
   <% @assignments.each do |assignment| %>
     <%= render assignment %>
     <p>
-      <%= link_to "Show this assignment", assignment %>
+      <%= link_to "Show this assignment", assignment, class: "btn btn-sm btn-outline-secondary" %>
     </p>
   <% end %>
 </div>
-
-<%= link_to "New assignment", new_assignment_path %>
