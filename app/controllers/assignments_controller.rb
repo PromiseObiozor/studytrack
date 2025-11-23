@@ -4,8 +4,10 @@ class AssignmentsController < ApplicationController
 
   # GET /assignments or /assignments.json
   def index
-    @assignments = Assignment.all
+    @priority_strategy = DeadlinePriorityStrategy.new(Assignment.all)
+    @assignments       = @priority_strategy.ordered
   end
+
 
   # GET /assignments/1 or /assignments/1.json
   def show
